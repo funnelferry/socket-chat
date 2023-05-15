@@ -14,6 +14,11 @@ function getActiveUser(id) {
   return users.find(user => user.id === id);
 }
 
+// Get user based on name
+function getUserByName(username) {
+  return users.find(user => user.username === username);
+}
+
 // User leaves chat
 function exitRoom(id) {
   const index = users.findIndex(user => user.id === id);
@@ -32,5 +37,6 @@ module.exports = {
   newUser,
   getActiveUser,
   exitRoom,
-  getIndividualRoomUsers
+  getIndividualRoomUsers,
+  getUserByName
 };

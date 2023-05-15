@@ -7,7 +7,8 @@ const {
   getActiveUser,
   exitRoom,
   newUser,
-  getIndividualRoomUsers
+  getIndividualRoomUsers,
+  getUserByName
 } = require('./helper/userHelper');
 
 const app = express();
@@ -15,6 +16,9 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 const PORT = process.env.PORT || 3000;
+
+// Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // this block will run when the client connects
 io.on('connection', socket => {
@@ -24,14 +28,14 @@ io.on('connection', socket => {
     socket.join(user.room);
 
     // General welcome
-    socket.emit('message', formatMessage("Airtribe", 'Messages are limited to this room! '));
+    socket.emit('message', formatMessage("MyChat", 'Messages are limited to this room! '));
 
     // Broadcast everytime users connects
     socket.broadcast
       .to(user.room)
       .emit(
         'message',
-        formatMessage("Airtribe", `${user.username} has joined the room`)
+        formatMessage("MyChat", `${user.username} has joined the room`)
       );
 
     // Current active users and room name
@@ -45,7 +49,21 @@ io.on('connection', socket => {
   socket.on('chatMessage', msg => {
     const user = getActiveUser(socket.id);
 
-    io.to(user.room).emit('message', formatMessage(user.username, msg));
+    const match = msg.match(/@(\w+)/);
+
+    if (match) {
+      const receiver = getUserByName(match[1]);
+      if (receiver) {
+        io.to(receiver.id).emit('message', formatMessage(user.username, msg));
+        io.to(user.id).emit('message', formatMessage(user.username, msg));
+      } else {
+        io.to(user.room).emit('message', formatMessage(user.username, msg));
+      }
+    } else {
+      io.to(user.room).emit('message', formatMessage(user.username, msg));
+    }
+
+    
   });
 
   // Runs when client disconnects
@@ -55,7 +73,7 @@ io.on('connection', socket => {
     if (user) {
       io.to(user.room).emit(
         'message',
-        formatMessage("Airtribe", `${user.username} has left the room`)
+        formatMessage("MyChat", `${user.username} has left the room`)
       );
 
       // Current active users and room name
