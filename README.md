@@ -44,4 +44,5 @@ Start sending messages and observe real-time updates across all instances.
 #### This project also includes an optional feature to send private messages to other users in the chat room. To send a private message, use the following command:
   
 @<username> <message>
+  
 Replace <username> with the recipient's username and <message> with the content of the private message.
