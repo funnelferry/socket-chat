@@ -4,9 +4,9 @@ This is a real-time chat application built using Node.js, Express.js, and Socket
 ## Installation and Setup
 Clone the repository
 
-git clone <repository-url>
+> git clone <repository-url>
+  
 Install the necessary dependencies:
-
 cd real-time-chat-application
 npm install
   
@@ -43,6 +43,6 @@ Start sending messages and observe real-time updates across all instances.
 
 #### This project also includes an optional feature to send private messages to other users in the chat room. To send a private message, use the following command:
   
-@<username> <message>
+@username message
   
-Replace <username> with the recipient's username and <message> with the content of the private message.
+Replace username with the recipient's username and message with the content of the private message.
