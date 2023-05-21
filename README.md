@@ -22,7 +22,9 @@ Start sending messages and communicate with other users in the chat room.
 
 ## Features
 Real-time communication using Socket.IO for instant message updates.
+  
 Server-side logic to manage chat rooms, user connections, and message broadcasting.
+  
 Socket.IO events implemented on the server-side:
 connection: Handles a new user connection.
 join: Adds a user to a specific chat room.
