@@ -8,5 +8,24 @@
     "stream": "^0.0.2",
     "through2": "^4.0.2",
     "ws": "^8.13.0"
-  }
+  },
+  "name": "socket-chat",
+  "description": "This is a real-time chat application built using Node.js, Express.js, and Socket.IO. It allows multiple users to join chat rooms and communicate with each other in real-time.",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/funnelferry/socket-chat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/funnelferry/socket-chat/issues"
+  },
+  "homepage": "https://github.com/funnelferry/socket-chat#readme"
 }
